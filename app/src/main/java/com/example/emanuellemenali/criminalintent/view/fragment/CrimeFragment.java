@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,14 +37,40 @@ public class CrimeFragment extends Fragment {
     private Button mCrimeDateButton;
     private CheckBox mSolvedCheckBox;
 
+    private static final String ARG_CRIME_ID = "crime_id";
+
+    public static CrimeFragment newInstance(UUID crimeId) {
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_CRIME_ID, crimeId);
+        CrimeFragment fragment = new CrimeFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//
+////        mCrime = new Crime();
+////        UUID crimeId = (UUID) getActivity().getIntent()
+////                .getSerializableExtra(CrimeActivity.EXTRA_CRIME_ID);
+//        UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
+//        mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
+//
+//        Log.d("mcrime", " "+ mCrime);
+//    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        UUID crimeId = (UUID) getActivity().getIntent()
+//                .getSerializableExtra(CrimeActivity.EXTRA_CRIME_ID);
+        UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
 
-        mCrime = new Crime();
-
+        mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
 
     }
+
 
     @Nullable
     @Override
@@ -53,6 +80,7 @@ public class CrimeFragment extends Fragment {
         mTitleCrimeTextView = view.findViewById(R.id.crime_title_text_view);
         mDetailCrimeTextView = view.findViewById(R.id.crime_details);
         mTitleField = view.findViewById(R.id.edit_crime_title);
+        mTitleField.setText(mCrime.getmTitle());
         mCrimeDateButton = view.findViewById(R.id.crime_date);
 
         mSolvedCheckBox = view.findViewById(R.id.crime_solved);
