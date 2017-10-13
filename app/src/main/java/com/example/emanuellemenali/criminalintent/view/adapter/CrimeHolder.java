@@ -11,13 +11,14 @@ import android.widget.Toast;
 
 import com.example.emanuellemenali.criminalintent.R;
 import com.example.emanuellemenali.criminalintent.model.Crime;
+import com.example.emanuellemenali.criminalintent.view.activity.CrimeActivity;
 import com.example.emanuellemenali.criminalintent.view.activity.CrimePagerActivity;
 
 /**
- * Created by emanuellemenali on 03/10/17.
+ * Created by emanuellemenali on 13/10/17.
  */
 
-public class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     private TextView mTitleTextView;
     private TextView mDateTextView;
@@ -39,14 +40,16 @@ public class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClick
         mDateTextView.setText(mCrime.getmDate().toString());
     }
 
+
+    public static final String EXTRA_CRIME_ID =
+            "com.example.emanuellemenali.criminalintent.crime_id";
+
     @Override
     public void onClick(View view) {
 
         Toast.makeText(mContext, mCrime.getmTitle(), Toast.LENGTH_SHORT).show();
-//        Intent intent = new Intent(mContext, CrimeActivity.class);
-//        Intent intent = CrimeActivity.newIntent(mContext, mCrime.getmId());
         Intent intent = CrimePagerActivity.newIntent(mContext, mCrime.getmId());
         mContext.startActivity(intent);
 
-    }
+  }
 }

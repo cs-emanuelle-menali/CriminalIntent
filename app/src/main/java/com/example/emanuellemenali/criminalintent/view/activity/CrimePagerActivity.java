@@ -23,10 +23,10 @@ import java.util.UUID;
  * Created by emanuellemenali on 10/10/17.
  */
 
-public class CrimePagerActivity extends AppCompatActivity{
+public class CrimePagerActivity extends AppCompatActivity {
 
-    private static final String EXTRA_CRIME_ID =
-            "com.example.emanuellemenali.criminalintent.view.activity.crime_id";
+    private static final String EXTRA_CRIME_ID = "com.example.emanuellemenali.criminalintent.view.activity.crime_id";
+
     private ViewPager mViewPager;
     private List<Crime> mCrimes;
 
@@ -37,14 +37,14 @@ public class CrimePagerActivity extends AppCompatActivity{
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crime_pager);
 
         UUID crimeId = (UUID) getIntent()
                 .getSerializableExtra(EXTRA_CRIME_ID);
 
-        mViewPager = findViewById(R.id.crime_view_pager);
+        mViewPager = (ViewPager) findViewById(R.id.crime_view_pager);
 
         mCrimes = CrimeLab.get(this).getCrimes();
 
@@ -62,5 +62,12 @@ public class CrimePagerActivity extends AppCompatActivity{
             }
         });
 
+        for (int i = 0; i < mCrimes.size(); i++) {
+            if (mCrimes.get(i).getmId().equals(crimeId)) {
+                mViewPager.setCurrentItem(i);
+                break;
+            }
+        }
     }
+
 }

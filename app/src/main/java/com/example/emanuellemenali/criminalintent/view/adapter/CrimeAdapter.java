@@ -6,12 +6,11 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.example.emanuellemenali.criminalintent.model.Crime;
-import com.example.emanuellemenali.criminalintent.view.fragment.CrimeListFragment;
 
 import java.util.List;
 
 /**
- * Created by emanuellemenali on 03/10/17.
+ * Created by emanuellemenali on 13/10/17.
  */
 
 public class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
@@ -41,7 +40,4 @@ public class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
     public int getItemCount() {
         return mCrimes.size();
     }
-
-
-
 }
