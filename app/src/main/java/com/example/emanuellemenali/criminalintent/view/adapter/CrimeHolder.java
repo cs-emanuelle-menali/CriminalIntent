@@ -26,7 +26,6 @@ public class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClick
     private TextView mDateTextView;
     private Crime mCrimeList;
     private Context mContext;
-    private List<Crime> mcrimes;
 
     public CrimeHolder(LayoutInflater inflater, ViewGroup parent, Context context) {
         super(inflater.inflate(R.layout.list_item_crime, parent, false));
@@ -55,6 +54,5 @@ public class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClick
         mContext.startActivity(intent);
 
   }
-
 
 }

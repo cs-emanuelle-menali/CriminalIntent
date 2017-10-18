@@ -27,7 +27,6 @@ public class DatePickerFragment extends DialogFragment {
     public static final String EXTRA_DATE =
             "com.example.emanuellemenali.criminalintent.view.fragment.date";
 
-
     private static final String ARG_DATE = "date";
     private DatePicker mDatePicker;
 
@@ -58,7 +57,6 @@ public class DatePickerFragment extends DialogFragment {
         return new AlertDialog.Builder(getActivity())
                 .setView(v)
                 .setTitle(R.string.date_picker_title)
-//                .setPositiveButton(android.R.string.ok, null)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

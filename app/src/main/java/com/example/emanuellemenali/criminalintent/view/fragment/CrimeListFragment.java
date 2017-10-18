@@ -63,7 +63,6 @@ public class CrimeListFragment extends Fragment {
 
             @Override
             public void onLongClick(View view, int position) {
-//                Toast.makeText(getContext(), "cliquei", Toast.LENGTH_SHORT).show();
             }
         }));
         return rootView;
