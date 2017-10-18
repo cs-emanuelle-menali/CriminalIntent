@@ -1,6 +1,5 @@
 package com.example.emanuellemenali.criminalintent.view.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,16 +13,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.emanuellemenali.criminalintent.R;
 import com.example.emanuellemenali.criminalintent.model.Crime;
 import com.example.emanuellemenali.criminalintent.model.CrimeLab;
 import com.example.emanuellemenali.criminalintent.view.activity.CrimePagerActivity;
-import com.example.emanuellemenali.criminalintent.view.adapter.ClickListener;
 import com.example.emanuellemenali.criminalintent.view.adapter.CrimeAdapter;
-import com.example.emanuellemenali.criminalintent.view.adapter.RecyclerTouchListener;
 
 import java.util.List;
 
@@ -58,13 +53,6 @@ public class CrimeListFragment extends Fragment {
 
         updateUi();
 
-        mCrimeRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(),
-                mCrimeRecyclerView, new ClickListener() {
-
-            @Override
-            public void onLongClick(View view, int position) {
-            }
-        }));
         return rootView;
     }
 
