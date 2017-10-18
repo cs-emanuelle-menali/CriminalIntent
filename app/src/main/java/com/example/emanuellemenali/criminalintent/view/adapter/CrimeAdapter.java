@@ -17,7 +17,6 @@ public class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
 
     private Context mContext;
 
-
     private List<Crime> mCrimes;
 
     public CrimeAdapter(List<Crime> crimes, Context context) {
@@ -39,5 +38,9 @@ public class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
     @Override
     public int getItemCount() {
         return mCrimes.size();
+    }
+
+    public void setCrimes(List<Crime> crimes) {
+        mCrimes = crimes;
     }
 }

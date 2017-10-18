@@ -11,8 +11,10 @@ import android.widget.Toast;
 
 import com.example.emanuellemenali.criminalintent.R;
 import com.example.emanuellemenali.criminalintent.model.Crime;
-import com.example.emanuellemenali.criminalintent.view.activity.CrimeActivity;
+import com.example.emanuellemenali.criminalintent.model.CrimeLab;
 import com.example.emanuellemenali.criminalintent.view.activity.CrimePagerActivity;
+
+import java.util.List;
 
 /**
  * Created by emanuellemenali on 13/10/17.
@@ -22,8 +24,9 @@ public class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClick
 
     private TextView mTitleTextView;
     private TextView mDateTextView;
-    private Crime mCrime;
+    private Crime mCrimeList;
     private Context mContext;
+    private List<Crime> mcrimes;
 
     public CrimeHolder(LayoutInflater inflater, ViewGroup parent, Context context) {
         super(inflater.inflate(R.layout.list_item_crime, parent, false));
@@ -35,9 +38,9 @@ public class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClick
     }
 
     public void bind(Crime crime) {
-        mCrime = crime;
-        mTitleTextView.setText(mCrime.getmTitle());
-        mDateTextView.setText(mCrime.getmDate().toString());
+        mCrimeList = crime;
+        mTitleTextView.setText(mCrimeList.getmTitle());
+        mDateTextView.setText(mCrimeList.getmDate().toString());
     }
 
 
@@ -47,9 +50,11 @@ public class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClick
     @Override
     public void onClick(View view) {
 
-        Toast.makeText(mContext, mCrime.getmTitle(), Toast.LENGTH_SHORT).show();
-        Intent intent = CrimePagerActivity.newIntent(mContext, mCrime.getmId());
+        Toast.makeText(mContext, mCrimeList.getmTitle(), Toast.LENGTH_SHORT).show();
+        Intent intent = CrimePagerActivity.newIntent(mContext, mCrimeList.getmId());
         mContext.startActivity(intent);
 
   }
+
+
 }
