@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.example.emanuellemenali.criminalintent.R;
 import com.example.emanuellemenali.criminalintent.model.Crime;
 import com.example.emanuellemenali.criminalintent.model.CrimeLab;
+import com.facebook.stetho.Stetho;
 
 import java.util.Date;
 import java.util.UUID;
@@ -59,6 +60,7 @@ public class CrimeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Stetho.initializeWithDefaults(getActivity());
 
         UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
 
@@ -73,7 +75,6 @@ public class CrimeFragment extends Fragment {
 
         AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
         appCompatActivity.getSupportActionBar();
-
 
         mTitleCrimeTextView = view.findViewById(R.id.crime_title_text_view);
         mDetailCrimeTextView = view.findViewById(R.id.crime_details);
@@ -152,10 +153,10 @@ public class CrimeFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode != Activity.RESULT_OK){
+        if (resultCode != Activity.RESULT_OK) {
             return;
         }
-        if (requestCode == REQUEST_DATE){
+        if (requestCode == REQUEST_DATE) {
             Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
             mCrime.setmDate(date);
             updateDate();
@@ -165,5 +166,26 @@ public class CrimeFragment extends Fragment {
 
     private void updateDate() {
         mCrimeDateButton.setText(mCrime.getmDate().toString());
+    }
+
+    private String getCrimeReport() {
+        String solvedString = null;
+        if (mCrime.ismSolved()) {
+            solvedString = getString(R.string.crime_report_solved);
+        } else {
+            solvedString = getString(R.string.crime_report_unsolved);
+        }
+        String dateFormat = "EEE, MMM dd";
+        String dateString = DateFormat.format(dateFormat,
+                mCrime.getmDate()).toString();
+        String suspect = mCrime.getmSuspect();
+        if (suspect == null) {
+            suspect = getString(R.string.crime_report_no_suspect);
+        } else {
+            suspect = getString(R.string.crime_report_suspect, suspect);
+        }
+        String report = getString(R.string.crime_report,
+                mCrime.getmTitle(), dateString, solvedString, suspect);
+        return report;
     }
 }
