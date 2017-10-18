@@ -42,8 +42,6 @@ public class CrimeFragment extends Fragment {
 
     private Crime mCrime;
 
-    private TextView mTitleCrimeTextView;
-    private TextView mDetailCrimeTextView;
     private EditText mTitleField;
     private Button mCrimeDateButton;
     private CheckBox mSolvedCheckBox;
@@ -74,9 +72,6 @@ public class CrimeFragment extends Fragment {
         AppCompatActivity appCompatActivity = (AppCompatActivity) getActivity();
         appCompatActivity.getSupportActionBar();
 
-
-        mTitleCrimeTextView = view.findViewById(R.id.crime_title_text_view);
-        mDetailCrimeTextView = view.findViewById(R.id.crime_details);
         mTitleField = view.findViewById(R.id.edit_crime_title);
         mTitleField.setText(mCrime.getmTitle());
         mCrimeDateButton = view.findViewById(R.id.crime_date);
