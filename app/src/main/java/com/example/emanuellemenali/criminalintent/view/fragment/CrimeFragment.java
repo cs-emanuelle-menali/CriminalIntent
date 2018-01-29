@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.example.emanuellemenali.criminalintent.R;
 import com.example.emanuellemenali.criminalintent.model.Crime;
 import com.example.emanuellemenali.criminalintent.model.CrimeLab;
+import com.example.emanuellemenali.criminalintent.view.activity.CrimeListActivity;
 import com.facebook.stetho.Stetho;
 
 import java.util.Date;
@@ -47,6 +48,7 @@ public class CrimeFragment extends Fragment {
     private Button mCrimeDateButton;
     private CheckBox mSolvedCheckBox;
     private Button mReportButton;
+    private Button saveCrime;
 
     public static CrimeFragment newInstance(UUID crimeId) {
         Bundle args = new Bundle();
@@ -131,6 +133,20 @@ public class CrimeFragment extends Fragment {
             }
         });
 
+        saveCrime = view.findViewById(R.id.button_save_crime);
+
+        saveCrime.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+//                Crime crime = new Crime();
+                CrimeLab.get(getActivity()).addCrime(mCrime);
+//                CrimeLab.get(getActivity()).updateCrime(mCrime);
+                Intent intent = new Intent(getContext(), CrimeListActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
@@ -156,8 +172,6 @@ public class CrimeFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        CrimeLab.get(getActivity())
-                .updateCrime(mCrime);
     }
 
     @Override

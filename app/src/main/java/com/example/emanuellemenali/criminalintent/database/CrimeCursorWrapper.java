@@ -9,10 +9,6 @@ import com.example.emanuellemenali.criminalintent.model.Crime;
 import java.util.Date;
 import java.util.UUID;
 
-/**
- * Created by emanuellemenali on 16/10/17.
- */
-
 public class CrimeCursorWrapper extends CursorWrapper {
 
     public CrimeCursorWrapper(Cursor cursor) {

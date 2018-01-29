@@ -6,10 +6,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.emanuellemenali.criminalintent.database.CrimeDbSchema.CrimeTable;
 
-/**
- * Created by emanuellemenali on 16/10/17.
- */
-
 public class CrimeBaseHelper extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;
