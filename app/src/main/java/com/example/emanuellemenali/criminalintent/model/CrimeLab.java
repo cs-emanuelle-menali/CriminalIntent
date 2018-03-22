@@ -14,10 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Created by emanuellemenali on 03/10/17.
- */
-
 public class CrimeLab {
 
     private static CrimeLab sCrimeLab;
