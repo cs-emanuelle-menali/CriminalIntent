@@ -25,6 +25,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.example.emanuellemenali.criminalintent.R;
 import com.example.emanuellemenali.criminalintent.model.Crime;
@@ -54,6 +56,9 @@ public class CrimeFragment extends Fragment {
     private Button mReportButton;
     private Button mSuspectButton;
     private Button saveCrime;
+
+    private ImageButton takePictureButton;
+    private ImageView suspectImageView;
 
     public static CrimeFragment newInstance(UUID crimeId) {
         Bundle args = new Bundle();
@@ -170,6 +175,9 @@ public class CrimeFragment extends Fragment {
         if (packageManager.resolveActivity(pickContact, PackageManager.MATCH_DEFAULT_ONLY) == null){
             mSuspectButton.setEnabled(false);
         }
+
+        takePictureButton = view.findViewById(R.id.camera_button);
+        suspectImageView = view.findViewById(R.id.crime_image);
 
         return view;
     }
