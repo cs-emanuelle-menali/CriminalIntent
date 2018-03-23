@@ -2,6 +2,7 @@ package com.example.emanuellemenali.criminalintent.view.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -140,12 +141,14 @@ public class CrimeFragment extends Fragment {
 
         final Intent pickContact = new Intent(Intent.ACTION_PICK,
                 ContactsContract.Contacts.CONTENT_URI);
+//        pickContact.addCategory(Intent.CATEGORY_HOME);
         mSuspectButton = view.findViewById(R.id.choose_suspect);
         mSuspectButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivityForResult(pickContact, REQUEST_CONTACT);
             }
         });
+
         if (mCrime.getmSuspect() != null) {
             mSuspectButton.setText(mCrime.getmSuspect());
         }
@@ -162,6 +165,11 @@ public class CrimeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        PackageManager packageManager = getActivity().getPackageManager();
+        if (packageManager.resolveActivity(pickContact, PackageManager.MATCH_DEFAULT_ONLY) == null){
+            mSuspectButton.setEnabled(false);
+        }
 
         return view;
     }
@@ -207,19 +215,29 @@ public class CrimeFragment extends Fragment {
                     ContactsContract.Contacts.DISPLAY_NAME
             };
 
-            Cursor c = getActivity().getContentResolver()
-                    .query(contactUri, queryFields, null, null, null);
+            Cursor c = null;
+            if (contactUri != null) {
+                c = getActivity().getContentResolver()
+                        .query(contactUri, queryFields, null, null, null);
+            }
             try {
-                if (c.getCount() == 0) {
+                if (c != null && c.getCount() == 0) {
                     return;
                 }
 
-                c.moveToFirst();
-                String suspect = c.getString(0);
+                if (c != null) {
+                    c.moveToFirst();
+                }
+                String suspect = null;
+                if (c != null) {
+                    suspect = c.getString(0);
+                }
                 mCrime.setmSuspect(suspect);
                 mSuspectButton.setText(suspect);
             } finally {
-                c.close();
+                if (c != null) {
+                    c.close();
+                }
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -245,8 +263,7 @@ public class CrimeFragment extends Fragment {
         } else {
             suspect = getString(R.string.crime_report_suspect, suspect);
         }
-        String report = getString(R.string.crime_report,
+        return getString(R.string.crime_report,
                 mCrime.getmTitle(), dateString, solvedString, suspect);
-        return report;
     }
 }
