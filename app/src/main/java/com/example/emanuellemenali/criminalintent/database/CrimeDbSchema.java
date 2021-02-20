@@ -1,9 +1,5 @@
 package com.example.emanuellemenali.criminalintent.database;
 
-/**
- * Created by emanuellemenali on 16/10/17.
- */
-
 public class CrimeDbSchema {
 
     public static final class CrimeTable {

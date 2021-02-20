@@ -85,10 +85,10 @@ public class CrimeListFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.new_crime:
-                Crime crime = new Crime();
-                CrimeLab.get(getActivity()).addCrime(crime);
-                Intent intent = CrimePagerActivity
-                        .newIntent(getActivity(), crime.getmId());
+//                Crime crime = new Crime();
+//                CrimeLab.get(getActivity()).addCrime(crime);
+                Intent intent =/* CrimePagerActivity*/
+                new Intent(getActivity(), CrimePagerActivity.class);
                 startActivity(intent);
                 return true;
 
@@ -133,66 +133,4 @@ public class CrimeListFragment extends Fragment {
         updateDescription();
     }
 
-//    public class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
-//
-//        private Context mContext;
-//
-//        private List<Crime> mCrimes;
-//
-//        private CrimeAdapter(List<Crime> crimes) {
-//
-//            mCrimes = crimes;
-//        }
-//
-//        @Override
-//        public CrimeHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//            LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-//            return new CrimeHolder(layoutInflater, parent);
-//        }
-//
-//        @Override
-//        public void onBindViewHolder(CrimeHolder holder, int position) {
-//
-//            Crime crime = mCrimes.get(position);
-//            holder.bind(crime);
-//        }
-//
-//        @Override
-//        public int getItemCount() {
-//            return mCrimes.size();
-//        }
-//
-//    }
-//
-//    public class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-//
-//        private TextView mTitleTextView;
-//        private TextView mDateTextView;
-//        private Crime mCrime;
-//
-//        public CrimeHolder(LayoutInflater inflater, ViewGroup parent) {
-//            super(inflater.inflate(R.layout.list_item_crime, parent, false));
-//            itemView.setOnClickListener(this);
-//
-//            mTitleTextView = (TextView) itemView.findViewById(R.id.crime_title);
-//            mDateTextView = (TextView) itemView.findViewById(R.id.crime_date);
-//        }
-//
-//        public void bind(Crime crime) {
-//            mCrime = crime;
-//            mTitleTextView.setText(mCrime.getmTitle());
-//            mDateTextView.setText(mCrime.getmDate().toString());
-//        }
-//
-//        @Override
-//        public void onClick(View view) {
-//
-//            Toast.makeText(getActivity(), mCrime.getmTitle(), Toast.LENGTH_SHORT).show();
-////        Intent intent = new Intent(mContext, CrimeActivity.class);
-////        Intent intent = CrimeActivity.newIntent(mContext, mCrime.getmId());
-//            Intent intent = CrimePagerActivity.newIntent(getActivity(), mCrime.getmId());
-//            startActivity(intent);
-//
-//        }
-//    }
 }

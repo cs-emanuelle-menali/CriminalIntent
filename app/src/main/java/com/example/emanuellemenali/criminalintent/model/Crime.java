@@ -3,10 +3,6 @@ package com.example.emanuellemenali.criminalintent.model;
 import java.util.Date;
 import java.util.UUID;
 
-/**
- * Created by emanuellemenali on 02/10/17.
- */
-
 public class Crime {
 
     private UUID mId;
